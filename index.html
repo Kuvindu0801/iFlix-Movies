@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,12 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b93aae0615.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
-        <!-- NAVBAR -->
+    <!-- NAVBAR -->
     <div class="navbar">
         <div class="navbar-container">
             <h1 class="logo">iFlix</h1>
@@ -30,36 +32,129 @@
                 <i class="fa-solid fa-user"></i>Profile</span>
             <!-- SIDEBAR -->
         </div>
-            <div class="sidebar">
-                <i class="left-menu-icon fa-solid fa-house"></i>
-                <i class="left-menu-icon fa-regular fa-magnifying-glass"></i>
-                <i class="left-menu-icon fa-solid fa-tv"></i>
-                <i class="left-menu-icon fa-solid fa-bookmark"></i>
+        <div class="sidebar">
+            <i class="left-menu-icon fa-solid fa-house"></i>
+            <i class="left-menu-icon fa-solid fa-compass"></i>
+            <i class="left-menu-icon fa-solid fa-tv"></i>
+            <i class="left-menu-icon fa-solid fa-bookmark"></i>
+        </div>
 
-            </div>
-            <div class="container">
-                <div class="content-container">
-                    <div class="featured-content">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum cupiditate est distinctio
-                            fuga aliquid veritatis tempore sit iusto aut, repudiandae quo. Veniam sint, nulla dicta
-                            consectetur debitis dolor vel sequi.</p>
-                        <button class="featured-button">Watch</button>
-                    </div>
-                    <div class="movie-list-container">
-                        <h1 class="movie-list-title">NEW RELEASES</h1>
-                        <div class="movie-list-wrapper">
-                            <div class="movie-list">
-                                <div class="movie-list-item">
-                                    <img src="" alt="" class="movie-list-item-img">
-                                    <span class="movie-list-item-title"></span>
-                                        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+        <!-- MAIN CONTAINER -->
+        <!-- HERO    -->
+        <div class="container">
+            <div class="content-container">
+                <!-- featured content -->
+                <div class="featured-content"
+                    style="background: linear-gradient(to bottom,rgba(0,0,0,0),#15151515) ,url(assets/img/fm-2.jpg);">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum cupiditate est distinctio
+                        fuga aliquid veritatis tempore sit iusto aut, repudiandae quo. Veniam sint, nulla dicta
+                        consectetur debitis dolor vel sequi.
+                    </p>
+                    <!-- <button class="featured-button">Watch</button> -->
                 </div>
             </div>
-        <script src="assets/js/app.js"></script>
+            <!-- movielist -->
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">Featured</h1>
+                <!-- MOVIES -->
+                <h2 class="movie-list-sub-title">Movies</h2>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img src="" alt="" class="movie-list-item-img">
+                            <span class="movie-list-item-title">Predator Badlands</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">Deadpool and Wolverine</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">Ballerina</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">F1 Movie</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">Sinners</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <i class="fas fa-chevron-right arrow"></i>
+
+                    </div>
+                    <h1 class="movie-list-title">Featured</h1>
+                        <!-- TVSHOWS -->
+                <h2 class="movie-list-sub-title">TV Shows</h2>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img src="" alt="" class="movie-list-item-img">
+                            <span class="movie-list-item-title"></span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">Star Wars</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">Storm</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">1917</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="" alt="">
+                            <span class="movie-list-item-title">Avengers</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <i class="fas fa-chevron-right arrow"></i>
+
+                    </div>
+             
+                    
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container"></div>
+    </footer>
+    <script src="assets/js/app.js"></script>
 </body>
 
 </html>
