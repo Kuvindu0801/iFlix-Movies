@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #151515;
+}
+
+/* navbar */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  top: 0;
+  position: sticky;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  height: 100%;
+  color: white;
+  font-family: sans-serif;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  font-size: 50px;
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: red;
+  cursor: pointer;
+}
+
+.menu-container {
+  flex: 6;
+}
+
+.menu-list {
+  display: flex;
+  list-style: none;
+  padding-top: 10px;
+}
+
+.menu-list-item {
+  margin-right: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-list-item.active {
+  font-weight: bold;
+}
+
+.profile-container {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-text-container {
+  margin: 0 20px;
+  color: white;
+}
+
+/* sidebar */
+.sidebar {
+  background: black;
+  width: 50px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 1s ease all;
+  padding-top: 100px;
+}
+
+.left-menu-icon {
+  margin-bottom: 40px;
+  color: white;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.searchbar {
+  background: white;
+  width: 530px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 150px;
+  margin-top: 90px;
+  padding-right: 20px;
+  
+}
+
+input {
+
+  width: 500px;
+  height: 50px;
+  border-radius: 50px;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
