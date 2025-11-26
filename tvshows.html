@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>iFlix</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"  
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
     <script src="https://kit.fontawesome.com/b93aae0615.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/trending.css">
-
+    <link rel="stylesheet" href="assets/css/trending.css" />
 </head>
 
 <body>
     <!-- NAVBAR -->
-
     <div class="navbar">
         <div class="navbar-container">
             <h1 class="logo">iFlix</h1>
@@ -27,22 +27,25 @@
         <div class="menu-container">
             <ul class="menu-list">
                 <a href="index.html">
-                    <li class="menu-list-item ">Home</li>
+                    <li class="menu-list-item">Home</li>
                 </a>
                 <a href="movies.html">
-                    <li class="menu-list-item" >Movies</li>
+                    <li class="menu-list-item">Movies</li>
                 </a>
                 <a href="tvshows.html">
-                <li class="menu-list-item">TV Shows</li>
+                    <li class="menu-list-item">TV Shows</li>
                 </a>
             </ul>
         </div>
         <div class="profile-text-container">
             <span class="profile-text">
-                <i class="fa-solid fa-user"></i>Profile</span>
+                <i class="fa-solid fa-user"></i>Profile
+            </span>
 
         </div>
+
     </div>
+
     <!-- SIDEBAR -->
     <div class="sidebar">
         <a href="index.html"><i class="left-menu-icon fa-solid fa-house"></i></a>
@@ -50,144 +53,88 @@
         <a href="browse.html"><i class="left-menu-icon fa-solid fa-compass"></i></a>
         <a href="tvshows.html"><i class="left-menu-icon fa-solid fa-tv" id="active"></i></a>
         <i class="left-menu-icon fa-solid fa-bookmark"></i>
-
     </div>
-    <!-- trending-movie -->
 
+    <!-- TV Shows Sections -->
     <div class="Main-Title">
         <h1>Popular TV Shows</h1>
     </div>
-    <div id="popular-tv-container">
+    <div id="popular-tv-container"></div>
 
-    </div>
-
-   
     <div class="Main-Title">
-    <h1>Upcomming TV Shows</h1></div>
-    <div id="upcomming-tv-container">
-        
+        <h1>Upcoming TV Shows</h1>
     </div>
-    
+    <div id="upcoming-tv-container"></div>
     <div class="Main-Title">
-    <h1>Top Rated TV Shows</h1></div>
-    <div id="toprated-tv-container">
-        
+        <h1>Top Rated TV Shows</h1>
     </div>
+    <div id="toprated-tv-container"></div>
 
-    
 
     <script>
-
         // API KEY
         const apiKey = '2ddc93d4834d63671d94572934ee483b';
 
-
-        // GET POPULAR MOVIES
+        // Get Popular TV Shows
         async function getPopularTv() {
             try {
                 const response = await fetch(`https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                displayMovies(data.results);
+                displayTvShows('popular-tv-container', data.results);
             } catch (error) {
-                console.error('Failed to fetch popular Tv:', error);
+                console.error('Failed to fetch popular TV shows:', error);
             }
         }
 
-        function displayMovies(movies) {
-            const container = document.getElementById('popular-tv-container');
-            container.innerHTML = '';
-            movies.forEach(movie => {
-                const movieElem = document.createElement('div');
-                movieElem.classList.add('movie');
-
-                // Movie poster url construction
-                const posterUrl = movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                    : 'https://via.placeholder.com/200x300?text=No+Image';
-
-                movieElem.innerHTML = `
-          <img src="${posterUrl}" alt="${movie.title} poster"/>
-          <div class="movie-title">${movie.title}</div>
-        `;
-
-                container.appendChild(movieElem);
-            });
-        }
-
-        getPopularTv();
-        //UPCOMMING MOVIES
-        async function getUpCommingTv() {
+        // Get Upcoming TV Shows
+        async function getUpcomingTv() {
             try {
                 const response = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${apiKey}`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                displaymovies(data.results);
+                displayTvShows('upcoming-tv-container', data.results);
             } catch (error) {
-                console.error('Failed to fetch trending Upcomming Tv:', error);
+                console.error('Failed to fetch upcoming TV shows:', error);
             }
         }
 
-        function displaymovies(movies) {
-            const container = document.getElementById('upcomming-tv-container');
-            container.innerHTML = ''; // Clear previous content
-            movies.forEach(movie => {
-                const movieElem = document.createElement('div');
-                movieElem.classList.add('movie');
-
-                // TV show poster url construction
-                const posterUrl = movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
-                    : 'https://via.placeholder.com/200x300?text=No+Image';
-
-                movieElem.innerHTML = `
-          <img src="${posterUrl}" alt="${movie.title} poster" />
-          <div class="movie-title">${movie.title}</div>
-        `;
-
-                container.appendChild(movieElem);
-            });
-        }
-
-        getUpCommingTv();
-
-        // GET TOPRATED MOVIES
+        // Get Top Rated TV Shows
         async function getTopRatedTv() {
             try {
                 const response = await fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=${apiKey}`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                displayMovies(data.results);
+                displayTvShows('toprated-tv-container', data.results);
             } catch (error) {
-                console.error('Failed to fetch toprated Tv:', error);
+                console.error('Failed to fetch top rated TV shows:', error);
             }
         }
 
-        function displayMovies(movies) {
-            const container = document.getElementById('toprated-tv-container');
+        // Display function for TV shows
+        function displayTvShows(containerId, tvShows) {
+            const container = document.getElementById(containerId);
             container.innerHTML = '';
-            movies.forEach(movie => {
-                const movieElem = document.createElement('div');
-                movieElem.classList.add('movie');
+            tvShows.forEach(tv => {
+                const tvElem = document.createElement('div');
+                tvElem.classList.add('movie');
 
-                // Movie poster url construction
-                const posterUrl = movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+                const posterUrl = tv.poster_path
+                    ? `https://image.tmdb.org/t/p/w200${tv.poster_path}`
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
-                movieElem.innerHTML = `
-          <img src="${posterUrl}" alt="${movie.title} poster"/>
-          <div class="movie-title">${movie.title}</div>
-        `;
+                tvElem.innerHTML = `
+                 <img src="${posterUrl}" alt="${tv.name} poster" />
+                <div class="movie-title">${tv.name}</div>`;
 
-                container.appendChild(movieElem);
+                container.appendChild(tvElem);
             });
         }
 
+        getPopularTv();
+        getUpcomingTv();
         getTopRatedTv();
-
     </script>
-
 </body>
 
 </html>

@@ -148,7 +148,7 @@ i:hover {
 #trending-movies-container,
 #tvshows-container,
 #popular-movies-container,
-#upcomming-movie-container,
+#upcoming-movie-container,
 #toprated-movie-container {
     display: flex;
     flex-wrap: wrap;
@@ -159,7 +159,7 @@ i:hover {
 }
 
 #popular-tv-container,
-#upcomming-tv-container,
+#upcoming-tv-container,
 #toprated-tv-container {
     display: flex;
     flex-wrap: wrap;
