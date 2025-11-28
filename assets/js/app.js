@@ -1,22 +1,3 @@
-const apiKey = '2ddc93d4834d63671d94572934ee483b';
-
-let id = 550; // Example TV show ID
-
-async function fetchShowDetails(id) {
-    const url = `https://api.themoviedb.org/3/tv/${id}?api_key=${apiKey}&language=en-US`;
-    const response = await fetch(url);
-    const data = await response.json();
-
-    document.getElementById('show-title').textContent = `${data.name} (${data.first_air_date.slice(0, 4)})`;
-    document.getElementById('tags').textContent = data.genres.map(g => g.name).join(', ');
-    document.getElementById('show-overview').textContent = data.overview;
-    document.getElementById('show-score').textContent = Math.round(data.vote_average * 10) + '%';
-    document.getElementById('img-bg').src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-    document.getElementById('show-creators').textContent = data.created_by.map(c => c.name).join(', ');
-}
-
-fetchShowDetails(id);
-
 
 async function getUpcomingMovies() {
     try {

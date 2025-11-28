@@ -101,9 +101,10 @@
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
                 movieElem.innerHTML = `
-          <img src="${posterUrl}" alt="${movie.title} poster"/>
-          <div class="movie-title">${movie.title}</div>
-        `;
+                <a href="details.html?movieId=${movie.id}">
+                <img src="${posterUrl}" alt="${movie.title} poster"/></a>
+                <a href="details.html?movieId=${movie.id}">
+                <div class="movie-title">${movie.title}</div></a>`;
 
                 container.appendChild(movieElem);
             });
@@ -135,9 +136,10 @@
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
                 showElem.innerHTML = `
-          <img src="${posterUrl}" alt="${show.name} poster" />
-          <div class="movie-title">${show.name}</div>
-        `;
+                <a href="details.html?tvid=${show.id}">
+                <img src="${posterUrl}" alt="${show.name} poster"/></a>
+                <a href="details.html?tvid=${show.id}">
+                <div class="movie-title">${show.name}</div></a>`;
 
                 container.appendChild(showElem);
             });
