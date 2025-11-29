@@ -24,9 +24,10 @@
         </div>
         <div class="menu-container">
             <ul class="menu-list">
-                <a href="index.html"><li class="menu-list-item active">Home</li></a>
-                <a href="movies.html"><li class="menu-list-item">Movies</li></a>
-                <a href="tvshows.html"><li class="menu-list-item">TV Shows</li></a>
+                <li><a href="index.html" class="menu-list-item active">Home</a></li>
+                <li><a href="movies.html" class="menu-list-item">Movies</a></li>
+                <li><a href="tvshows.html" class="menu-list-item ">TV Shows</a></li>
+
             </ul>
         </div>
         <div class="profile-text-container">
@@ -39,7 +40,7 @@
         <a href="index.html" aria-label="Home"><i class="left-menu-icon fa-solid fa-house" id="active"></i></a>
         <a href="trending.html"><i class="left-menu-icon fa-solid fa-fire"></i></a>
         <a href="browse.html" aria-label="Browse"><i class="left-menu-icon fa-solid fa-compass"></i></a>
-        <a href="tv.html" aria-label="TV Shows"><i class="left-menu-icon fa-solid fa-tv"></i></a>
+        <a href="tvshows.html" aria-label="TV Shows"><i class="left-menu-icon fa-solid fa-tv"></i></a>
         <a href="bookmarks.html" aria-label="Bookmarks"><i class="left-menu-icon fa-solid fa-bookmark"></i></a>
     </aside>
 
@@ -55,20 +56,19 @@
         </section>
 
         <!-- MOVIE LIST -->
-          <h1 class="Main-Title">Now Playing</h1>
-            <h2 class="sub-title">Movies</h2>
-          <div id="nowplaying-movies-container"></div>
+        <h1 class="Main-Title">Now Playing</h1>
+        <h2 class="sub-title">Movies</h2>
+        <div id="nowplaying-movies-container"></div>
         <!-- TV SHOW LIST -->
-         <h1 class="Main-Title">Now Playing</h1>
-            <h2 class="sub-title">TV Shows</h2>
-          <div id="nowplaying-TV-container"></div>
+        <h1 class="Main-Title">Now Playing</h1>
+        <h2 class="sub-title">TV Shows</h2>
+        <div id="nowplaying-TV-container"></div>
     </main>
     <script>
+
         // API KEY
         const apiKey = '2ddc93d4834d63671d94572934ee483b';
 
-
-        // GET TRENDING MOVIES
         async function getNowPlayingMovies() {
             try {
                 const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`);
@@ -76,7 +76,7 @@
                 const data = await response.json();
                 displayMovies(data.results);
             } catch (error) {
-                console.error('Failed to fetch trending movies:', error);
+                console.error('Failed to fetch nowplaying movies:', error);
             }
         }
 
@@ -93,16 +93,17 @@
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
                 movieElem.innerHTML = `
-          <img src="${posterUrl}" alt="${movie.title} poster"/>
-          <div class="movie-title">${movie.title}</div>
-        `;
+                <a href="details.html?movieId=${movie.id}">
+                <img src="${posterUrl}" alt="${movie.title} poster"/></a>
+                <a href="details.html?movieId=${movie.id}">
+                <div class="movie-title">${movie.title}</div></a>`;
+
+
 
                 container.appendChild(movieElem);
             });
         }
-
-        getNowPlayingMovies();
-
+        /////////////////////////////////////
         async function getNowPlayingTV() {
             try {
                 const response = await fetch(`https://api.themoviedb.org/3/tv/airing_today?api_key=${apiKey}`);
@@ -110,7 +111,7 @@
                 const data = await response.json();
                 displayTV(data.results);
             } catch (error) {
-                console.error('Failed to fetch trending movies:', error);
+                console.error('Failed to fetch nowplaying TV shows:', error);
             }
         }
 
@@ -127,15 +128,37 @@
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
                 TVElem.innerHTML = `
-          <img src="${posterUrl}" alt="${Tv.title} poster"/>
-          <div class="Tv-title">${Tv.name}</div>
-        `;
-
+                <a href="details.html?tvid=${Tv.id}">
+                <img src="${posterUrl}" alt="${Tv.name} poster"/></a>
+                <a href="details.html?tvid=${Tv.id}">
+                <div class="movie-title">${Tv.name}</div></a>`;
                 container.appendChild(TVElem);
             });
         }
 
+
+
+
+
+        let id = 1233413; //
+
+        async function fetchShowDetails(id) {
+            const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`;
+            const response = await fetch(url);
+            const data = await response.json();
+
+            document.getElementById('movie-name').textContent = `${data.name} (${data.first_air_date.slice(0, 4)})`;
+            document.getElementById('genre-1').textContent = data.genres.map(g => g.name).join(', ');
+            document.getElementById('movie-bg').src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+            document.getElementById('').textContent = data.created_by.map(c => c.name).join(', ');
+            document.getElementById('country').textContent = `${data.origin_country}`;
+        }
+
+        fetchShowDetails(id);
+
+        getNowPlayingMovies();
         getNowPlayingTV();
+
     </script>
 </body>
 

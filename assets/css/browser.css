@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: #151515;
+}
+
+/* navbar */
+.navbar {
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  top: 0;
+  position: sticky;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  height: 100%;
+  color: white;
+  font-family: sans-serif;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  font-size: 50px;
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: red;
+  cursor: pointer;
+}
+
+.menu-container {
+  flex: 6;
+}
+
+.menu-list {
+  display: flex;
+  list-style: none;
+  padding-top: 10px;
+}
+
+.menu-list-item {
+  margin-right: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-list-item.active {
+  font-weight: bold;
+}
+
+.profile-container {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-text-container {
+  margin: 0 20px;
+  color: white;
+}
+
+/* sidebar */
+.sidebar {
+  background: black;
+  width: 50px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 1s ease all;
+  padding-top: 100px;
+}
+
+#active {
+  color: #7a1b09;
+}
+
+i:hover {
+  color: red;
+}
+
+.left-menu-icon {
+  margin-bottom: 40px;
+  color: white;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.search-container {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+input {
+  margin-top: 50px;
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+}
+
+button {
+
+  padding: 11px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background-color: #7a1b09;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #ff0303;
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  color: white;
+}
+
+.movie {
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  transition: transform 0.2s;
+}
+
+.movie:hover {
+  transform: scale(1.05);
+}
+
+.movie img {
+  width: 100%;
+  display: block;
+}
+
+.movie-info {
+  padding: 10px;
+}
+
+.movie-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 5px;
+}
+
+.movie-date {
+  font-size: 14px;
+  color: #bbb;
+}

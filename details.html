@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iFlix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/b93aae0615.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="shortcut icon" href="assets/img/icons8-movie-ticket-16.png" />
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1 class="logo">iFlix</h1>
+        </div>
+        <div class="menu-container">
+            <ul class="menu-list">
+                <a href="index.html">
+                    <li class="menu-list-item active">Home</li>
+                </a>
+                <a href="movies.html">
+                    <li class="menu-list-item">Movies</li>
+                </a>
+                <a href="tvshows.html">
+                    <li class="menu-list-item">TV Shows</li>
+                </a>
+            </ul>
+        </div>
+        <div class="profile-text-container">
+            <span class="profile-text"><i class="fa-solid fa-user"></i> Profile</span>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="index.html" aria-label="Home"><i class="left-menu-icon fa-solid fa-house" id="active"></i></a>
+        <a href="trending.html"><i class="left-menu-icon fa-solid fa-fire"></i></a>
+        <a href="browse.html" aria-label="Browse"><i class="left-menu-icon fa-solid fa-compass"></i></a>
+        <a href="tvshows.html" aria-label="TV Shows"><i class="left-menu-icon fa-solid fa-tv"></i></a>
+        <a href="bookmarks.html" aria-label="Bookmarks"><i class="left-menu-icon fa-solid fa-bookmark"></i></a>
+    </aside>
+
+    <div class="detail-container" id="movie-background-container">
+        <img src="#" alt="" class="img-bg" id="movie-bg">
+        <div class="play-text">
+            <h1 class="show-title" id="movie-name">Sinners</h1>
+            <div class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+
+            </div>
+            <div class="tags">
+                <span id="genre-1">Action</span>
+                <span>Adventure</span>
+                <span>4K</span>
+            </div>
+            <!-- trailer button -->
+            <a href="" class="watch-btn">
+                <i class="fa-solid fa-play"></i></a>
+            <span class="watch">Watch the Trailer</span>
+        </div>
+        <!-- PLAY BUTTON -->
+        <i class="fa-solid fa-play" id="play-movie"></i>
+    </div>
+    <div class="overview" style="margin: 60px;color: white;">
+        <p id="show-overview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nostrum molestiae tempora
+            ipsam distinctio aperiam, doloribus molestias harum omnis corporis tempore, excepturi assumenda, officiis
+            illum esse cupiditate id amet error?</p>
+    </div>
+    <div class="details" style="color: white; margin: 60px;">
+        <p>Country:<a href="" id="country">us</a></p>
+        <p>Genre:<a href="" id="genre">us</a></p>
+        <p>Released:<a href="" id="released">us</a></p>
+
+
+
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('movieId');  // Use same casing as URLs you send
+        const tvId = urlParams.get('tvid');
+        const apiKey = '2ddc93d4834d63671d94572934ee483b';
+
+        async function fetchMovieDetails(movieid) {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${movieid}?api_key=${apiKey}&language=en-US`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+
+                document.getElementById('movie-name').textContent = `${data.title} (${data.release_date.slice(0, 4)})`;
+                document.getElementById('genre-1').textContent = data.genres.map(g => g.name).join(', ');
+                document.getElementById('movie-bg').src = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
+                document.getElementById('show-overview').textContent = data.overview;
+                document.getElementById('country').textContent = data.production_countries.map(c => c.name).join(', '); // For movies, use production_countries
+                document.getElementById('genre').textContent = data.genres.map(g => g.name).join(', ');
+                document.getElementById('released').textContent = data.release_date;
+
+            } catch (error) {
+                console.error('Failed to fetch movie details:', error);
+            }
+        }
+
+        async function fetchTvDetails(tvid) {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/tv/${tvid}?api_key=${apiKey}&language=en-US`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+
+                // TV show fields differ from movie fields
+                document.getElementById('movie-name').textContent = `${data.name} (${data.first_air_date ? data.first_air_date.slice(0, 4) : 'N/A'})`;
+                document.getElementById('genre-1').textContent = data.genres.map(g => g.name).join(', ');
+                document.getElementById('movie-bg').src = `https://image.tmdb.org/t/p/w500${data.backdrop_path}`;
+                document.getElementById('show-overview').textContent = data.overview;
+                document.getElementById('country').textContent = data.origin_country.join(', '); // Array for TV shows
+                document.getElementById('genre').textContent = data.genres.map(g => g.name).join(' , ');
+                document.getElementById('released').textContent = data.first_air_date || 'N/A';
+
+            } catch (error) {
+                console.error('Failed to fetch TV show details:', error);
+            }
+        }
+
+        if (movieId) {
+            fetchMovieDetails(movieId);
+        } else if (tvId) {
+            fetchTvDetails(tvId);
+        }
+
+    </script>
+
+
+
+
+</body>

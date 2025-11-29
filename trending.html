@@ -32,7 +32,9 @@
                 <a href="movies.html">
                     <li class="menu-list-item">Movies</li>
                 </a>
+                <a href="tvshows.html">
                 <li class="menu-list-item">TV Shows</li>
+                </a>
             </ul>
         </div>
         <div class="profile-text-container">
@@ -46,7 +48,7 @@
         <a href="index.html"><i class="left-menu-icon fa-solid fa-house"></i></a>
         <i class="left-menu-icon fa-solid fa-fire" id="active"></i>
         <a href="browse.html"><i class="left-menu-icon fa-solid fa-compass"></i></a>
-        <i class="left-menu-icon fa-solid fa-tv"></i>
+        <a href="tvshows.html"><i class="left-menu-icon fa-solid fa-tv"></i></a>
         <i class="left-menu-icon fa-solid fa-bookmark"></i>
 
     </div>
@@ -99,9 +101,10 @@
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
                 movieElem.innerHTML = `
-          <img src="${posterUrl}" alt="${movie.title} poster"/>
-          <div class="movie-title">${movie.title}</div>
-        `;
+                <a href="details.html?movieId=${movie.id}">
+                <img src="${posterUrl}" alt="${movie.title} poster"/></a>
+                <a href="details.html?movieId=${movie.id}">
+                <div class="movie-title">${movie.title}</div></a>`;
 
                 container.appendChild(movieElem);
             });
@@ -133,9 +136,10 @@
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
                 showElem.innerHTML = `
-          <img src="${posterUrl}" alt="${show.name} poster" />
-          <div class="movie-title">${show.name}</div>
-        `;
+                <a href="details.html?tvid=${show.id}">
+                <img src="${posterUrl}" alt="${show.name} poster"/></a>
+                <a href="details.html?tvid=${show.id}">
+                <div class="movie-title">${show.name}</div></a>`;
 
                 container.appendChild(showElem);
             });

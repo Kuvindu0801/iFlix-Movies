@@ -57,10 +57,12 @@ body {
   margin-right: 30px;
   color: white;
   cursor: pointer;
+  margin: 20px;
 }
 
 .menu-list-item.active {
-  font-weight: bold;
+  font-weight: bolder;
+  color:maroon ;
 }
 
 .profile-container {
@@ -161,7 +163,8 @@ h2 {
   color: white;
 }
 
-#nowplaying-movies-container,#nowplaying-TV-container {
+#nowplaying-movies-container,
+#nowplaying-TV-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -170,7 +173,8 @@ h2 {
   margin-bottom: 150px;
 }
 
-.movie ,.Tv{
+.movie,
+.Tv {
   width: 150px;
   height: 280px;
   font-family: Arial, sans-serif;
@@ -190,7 +194,8 @@ img:hover {
   opacity: 0.5;
 }
 
-.movie-title,.Tv-title{
+.movie-title,
+.Tv-title {
   cursor: pointer;
   font-size: 14px;
   margin-top: 20px;
@@ -199,7 +204,8 @@ img:hover {
   color: white;
 }
 
-.movie-title:hover,.Tv-title:hover {
+.movie-title:hover,
+.Tv-title:hover {
   color: maroon;
 }
 
@@ -213,6 +219,7 @@ img:hover {
 
 #active {
   color: maroon;
+  font-weight: bold;
 }
 
 .sidebar a:hover {
@@ -275,4 +282,102 @@ img:hover {
   background: #151515;
   margin-left: 40px;
   width: 100%;
+}
+
+/*/////////////////////////////////////////////////////////////*/
+
+.detail-container {
+  position: relative;
+  min-height: 540px;
+  color: white;
+
+}
+
+.img-bg {
+  position: absolute;
+  z-index: -1;
+  height: 110%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+
+}
+
+.play-text {
+  position: relative;
+  top: 330px;
+  color: white;
+  left: 10px;
+  background: #151515;
+  width: 500px;
+  height: 100%;
+  margin-left: 50px;
+  padding-left: 60px;
+  font-size: 20px;
+}
+
+.play-text h1 {
+  font-size: 45px;
+}
+
+.tags {
+  color: lightblue;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  margin: 1 rem 0;
+}
+
+.tags span {
+  padding: 0 4px;
+}
+
+#play-movie {
+  top: 250px;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 15px;
+  margin-left: 700px;
+  color: white;
+  font-size: 70px;
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watch-btn i {
+  background: white;
+  color: red;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 10px;
+
+}
+
+.watch {
+  top: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.rating {
+  color: rgb(222, 222, 31);
+}
+.details{
+  border: 2px solid gray;
+  border-radius: 20px;
+  padding: 10px;
+  width: 500px;
+  background-color: #5a1e1655;
+}
+#country,#genre,#released{
+  font-weight: 400;
+  color: lightblue;
+  margin-left: 10px;
+  
+
+
 }

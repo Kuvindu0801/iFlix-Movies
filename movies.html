@@ -27,12 +27,14 @@
         <div class="menu-container">
             <ul class="menu-list">
                 <a href="index.html">
-                    <li class="menu-list-item active">Home</li>
+                    <li class="menu-list-item ">Home</li>
                 </a>
                 <a href="movies.html">
-                    <li class="menu-list-item">Movies</li>
+                    <li class="menu-list-item active" id="active-movie">Movies</li>
                 </a>
-                <li class="menu-list-item">TV Shows</li>
+                <a href="tvshows.html">
+                    <li class="menu-list-item">TV Shows</li>
+                </a>
             </ul>
         </div>
         <div class="profile-text-container">
@@ -46,7 +48,7 @@
         <a href="index.html"><i class="left-menu-icon fa-solid fa-house"></i></a>
         <a href="trending.html"><i class="left-menu-icon fa-solid fa-fire"></i></a>
         <a href="browse.html"><i class="left-menu-icon fa-solid fa-compass"></i></a>
-        <i class="left-menu-icon fa-solid fa-tv"></i>
+        <a href="tvshows.html"><i class="left-menu-icon fa-solid fa-tv"></i></a>
         <i class="left-menu-icon fa-solid fa-bookmark"></i>
 
     </div>
@@ -59,96 +61,82 @@
 
     </div>
 
-   
+
     <div class="Main-Title">
-    <h1>Upcomming Movies</h1></div>
-    <div id="upcomming-movie-container">
-        
+        <h1>Upcomming Movies</h1>
     </div>
-    
+    <div id="upcoming-movie-container">
+
+    </div>
+
     <div class="Main-Title">
-    <h1>Top Rated Movies</h1></div>
+        <h1>Top Rated Movies</h1>
+    </div>
     <div id="toprated-movie-container">
-        
+
     </div>
 
-    
 
-    <script>
 
-        // API KEY
+     <script>
         const apiKey = '2ddc93d4834d63671d94572934ee483b';
 
-
-        // GET TRENDING MOVIES
-        async function getTrendingMovies() {
+        async function getPopularmovie() {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                displayMovies(data.results);
+                displayMovies('popular-movie-container', data.results);
             } catch (error) {
-                console.error('Failed to fetch trending movies:', error);
+                console.error('Failed to fetch popular movies:', error);
             }
         }
 
-        function displayMovies(movies) {
-            const container = document.getElementById('trending-movies-container');
+        async function getUpcomingmovie() {
+            try {
+                // Using "airing_today" for upcoming shows is probably an error; consider "on_the_air" or "today" dates
+                const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                displayMovies('upcoming-movie-container', data.results);
+            } catch (error) {
+                console.error('Failed to fetch upcoming movies:', error);
+            }
+        }
+
+        async function getTopRatedmovie() {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                displayMovies('toprated-movie-container', data.results);
+            } catch (error) {
+                console.error('Failed to fetch top rated movies:', error);
+            }
+        }
+
+        function displayMovies(containerId, movies) {
+            const container = document.getElementById(containerId);
             container.innerHTML = '';
             movies.forEach(movie => {
                 const movieElem = document.createElement('div');
                 movieElem.classList.add('movie');
-
-                // Movie poster url construction
                 const posterUrl = movie.poster_path
                     ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
                     : 'https://via.placeholder.com/200x300?text=No+Image';
 
+                // Wrap entire block in <a> for better usability and semantics
                 movieElem.innerHTML = `
-          <img src="${posterUrl}" alt="${movie.title} poster"/>
-          <div class="movie-title">${movie.title}</div>
-        `;
-
+                    <a href="details.html?movieId=${movie.id}" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
+                        <img src="${posterUrl}" alt="${movie.title} poster" />
+                        <div class="movie-title">${movie.title}</d></a>`;
                 container.appendChild(movieElem);
             });
         }
 
-        getTrendingMovies();
-        // TRENDING TV
-        async function getTrendingTVShows() {
-            try {
-                const response = await fetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${apiKey}`);
-                if (!response.ok) throw new Error('Network response was not ok');
-                const data = await response.json();
-                displayTVShows(data.results);
-            } catch (error) {
-                console.error('Failed to fetch trending TV shows:', error);
-            }
-        }
-
-        function displayTVShows(tvshows) {
-            const container = document.getElementById('tvshows-container');
-            container.innerHTML = ''; // Clear previous content
-            tvshows.forEach(show => {
-                const showElem = document.createElement('div');
-                showElem.classList.add('movie');
-
-                // TV show poster url construction
-                const posterUrl = show.poster_path
-                    ? `https://image.tmdb.org/t/p/w200${show.poster_path}`
-                    : 'https://via.placeholder.com/200x300?text=No+Image';
-
-                showElem.innerHTML = `
-          <img src="${posterUrl}" alt="${show.name} poster" />
-          <div class="movie-title">${show.name}</div>
-        `;
-
-                container.appendChild(showElem);
-            });
-        }
-
-        getTrendingTVShows();
-
+        getPopularmovie();
+        getUpcomingmovie();
+        getTopRatedmovie();
     </script>
 
 </body>
