@@ -373,11 +373,9 @@ img:hover {
   width: 500px;
   background-color: #5a1e1655;
 }
-#country,#genre,#released{
+#country,#genre,#released,#director,#actor,#rating{
   font-weight: 400;
   color: lightblue;
   margin-left: 10px;
-  
-
 
 }
